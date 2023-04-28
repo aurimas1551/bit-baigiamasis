@@ -1,11 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import Nav from "./Components/Nav";
+import Routes from "./Components/Routes";
+import { GlobalProvider } from './Components/Global';
 
 function App() {
   return (
-    <div>
-      asd
-    </div>
+    <GlobalProvider>
+      <Nav />
+      <Routes />
+    </GlobalProvider>
   );
 }
 

@@ -1,0 +1,81 @@
+body,
+body * {
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+    color: dimgrey
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    background-color: aliceblue;
+    padding: 20px 100px;
+  }
+  
+  .nav-name {
+    font-size: 30px;
+    cursor: default;
+  }
+  
+  .nav-link {
+    margin-left: 50px;
+    font-size: 18px;
+    text-decoration: none;
+    color: grey;
+    padding-top: 10px;
+  }
+  
+  .nav-link:hover {
+    color: lightblue;
+    cursor: pointer;
+  }
+
+  .login {
+    display: flex;
+    justify-content: center;
+    margin-top: 250px;
+  }
+
+  .login-form {
+    width: 220px;
+    padding: 20px;
+    border: 1px black solid;
+    background-color: aliceblue;
+    border-radius: 20px;
+  }
+
+  .login-form > h2{
+    padding-bottom: 20px;
+  }
+
+  .login-input {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-control {
+    width: 100px;
+    padding: 5px;
+    border-radius: 5px;
+    height: 20px;
+  }
+  
+  .login-input-name-pass {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+  }
+
+  .login-button {
+    align-self: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+  }
+
+  .login-button:hover {
+    background-color: grey;
+  }

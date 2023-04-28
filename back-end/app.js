@@ -32,6 +32,67 @@ app.use(express.json());
 
 //DB
 
+//get list events
+app.get('/events', (req, res) => {
+    const sql = `
+        SELECT id, name, category, time, place, status, userId
+        FROM events
+    `;
+    con.query(sql, (err, result) => {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
+//create an event
+app.post('/event', (req, res) => {
+    const sql = `
+        INSERT INTO events (name, category, time, place, userId)
+        VALUES (?,?,?,?,?)
+    `;
+    con.query(sql, [req.body.name, req.body.category, req.body.time, req.body.place, req.body.userId], (err) => {
+        if (err) throw err;
+        res.json({});
+    });
+});
+
+//admin
+
+//update event status
+app.put('/events/:id', (req, res) => {
+    const sql = `
+        UPDATE events
+        SET name = ?, category = ?, time = ?, place = ?, status = ?, userId = ?
+        WHERE id = ?
+    `;
+    con.query(sql, [req.body.name, req.body.category, req.body.time, req.body.place, req.body.status, req.body.userId, req.params.id], (err) => {
+        if (err) throw err;
+        res.json({});
+    });
+});
+
+//create categories
+app.post('/categories', (req, res) => {
+    const sql = `
+        INSERT INTO categories (category)
+        VALUES (?)
+    `;
+    con.query(sql, [req.body.category], (err) => {
+        if (err) throw err;
+        res.json({});
+    });
+});
+
+app.get('/categories', (req, res) => {
+    const sql = `
+        SELECT id, category
+        FROM categories
+    `;
+    con.query(sql, (err, result) => {
+        if (err) throw err;
+        res.json(result);
+    });
+});
 
 //Login
 
@@ -64,7 +125,7 @@ app.post('/login', (req, res) => {
 app.get('/login', (req, res) => {
 
     const sql = `
-        SELECT name
+        SELECT name, role, id
         FROM users
         WHERE session = ?
     `;
@@ -75,6 +136,8 @@ app.get('/login', (req, res) => {
             res.json({
                 status: 'ok',
                 name: result[0].name,
+                role: result[0].role,
+                id: result[0].id
             });
         } else {
             res.json({
